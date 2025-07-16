@@ -1,0 +1,23 @@
+uuid: ba275e9a-bb84-4289-bc30-90b8008812f9
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - gin
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: gin_search_form_wide
+theme: gin
+region: header
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

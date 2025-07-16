@@ -1,0 +1,95 @@
+# Drupal .gitignore
+# Based on web/example.gitignore with additional development patterns
+
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore configuration files that may contain sensitive information.
+web/sites/*/settings*.php
+web/sites/*/services*.yml
+
+# Ignore paths that contain user-generated content.
+web/sites/*/files
+web/sites/*/private
+
+# Ignore multi-site test environment.
+web/sites/simpletest
+
+# Ignore Drupal's file directory structure.
+web/sites/*/files/
+web/sites/*/private/
+
+# Ignore SimpleTest multi-site environment.
+web/sites/simpletest/
+
+# Ignore files build by Composer
+composer.lock
+/web/autoload.php
+/web/core
+/web/modules/contrib
+/web/themes/contrib
+/web/profiles/contrib
+/web/libraries
+
+# Ignore temporary files, build artifacts, and logs
+*.tmp
+*.temp
+*.log
+*.cache
+*.bak
+*.swp
+*.swo
+*~
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Ignore Node.js dependencies and build files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Ignore Sass cache
+.sass-cache/
+
+# Ignore Drupal console
+.console/
+
+# Ignore environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore development tools
+.phpunit.result.cache
+phpunit.xml
+/nbproject/
+
+/.ddev
+
+# Ignore deployment and build files
+/build/
+/dist/
+/deploy/
+
+# Ignore recipes (existing entry)
+/recipes

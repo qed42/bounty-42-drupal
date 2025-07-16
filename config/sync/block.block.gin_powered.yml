@@ -1,0 +1,22 @@
+uuid: 02944597-a0be-41f0-b047-ed3f68b5dc8f
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - gin
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: gin_powered
+theme: gin
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

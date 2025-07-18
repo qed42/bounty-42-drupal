@@ -1,11 +1,10 @@
-uuid: d0c5945a-b487-422f-8e81-62be476b2fd7
+uuid: 56107c5f-763e-4cd8-822d-f6640f295b05
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_team
     - node.type.project
-    - taxonomy.vocabulary.team
 id: node.project.field_team
 field_name: field_team
 entity_type: node
@@ -17,13 +16,14 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:user'
   handler_settings:
-    target_bundles:
-      team: team
+    target_bundles: null
     sort:
-      field: name
-      direction: asc
+      field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    filter:
+      type: _none
+    include_anonymous: false
 field_type: entity_reference

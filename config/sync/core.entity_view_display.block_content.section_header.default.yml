@@ -1,0 +1,31 @@
+uuid: 771e077e-705e-4e2a-a98d-1af101e0fa5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.section_header
+    - field.field.block_content.section_header.body
+    - field.field.block_content.section_header.field_title
+  module:
+    - text
+id: block_content.section_header.default
+targetEntityType: block_content
+bundle: section_header
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

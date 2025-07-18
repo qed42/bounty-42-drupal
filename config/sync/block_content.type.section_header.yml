@@ -1,0 +1,8 @@
+uuid: 783cdc2d-eedf-4aa1-9c7f-514728f6d60a
+langcode: en
+status: true
+dependencies: {  }
+id: section_header
+label: 'Section Header'
+revision: false
+description: 'Title and description for the section.'

@@ -1,0 +1,43 @@
+uuid: aa513b20-11c8-4e43-a4bb-48341e6fc012
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.team.field_designation
+    - field.field.taxonomy_term.team.field_employee_image
+    - taxonomy.vocabulary.team
+  module:
+    - image
+    - text
+id: taxonomy_term.team.default
+targetEntityType: taxonomy_term
+bundle: team
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_designation:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_employee_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

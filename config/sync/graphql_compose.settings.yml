@@ -1,5 +1,7 @@
 entity_config:
   image_style:
+    large:
+      enabled: false
     medium:
       enabled: true
     thumbnail:
@@ -30,8 +32,18 @@ entity_config:
       query_load_enabled: true
       edges_enabled: true
       routes_enabled: true
+    project:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
   taxonomy_term:
     tags:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
+    team:
       enabled: true
       query_load_enabled: true
       edges_enabled: true
@@ -41,21 +53,25 @@ entity_config:
       enabled: true
       query_load_enabled: true
       edges_enabled: true
-  webform:
-    contact_form:
-      enabled: true
-      routes_enabled: true
 field_config:
   node:
-    article:
-      body:
-        enabled: true
-      field_image:
-        enabled: true
-      field_tags:
-        enabled: true
     page:
       body:
+        enabled: true
+    project:
+      body:
+        enabled: true
+      field_default_image:
+        enabled: true
+      field_durations:
+        enabled: true
+      field_team:
+        enabled: true
+  taxonomy_term:
+    team:
+      field_designation:
+        enabled: true
+      field_employee_image:
         enabled: true
 settings:
   exclude_unpublished: true

@@ -1,0 +1,19 @@
+uuid: d80badc6-cea7-4c52-b19a-9c6f939e1317
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_durations
+    - node.type.project
+id: node.project.field_durations
+field_name: field_durations
+entity_type: node
+bundle: project
+label: Durations
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

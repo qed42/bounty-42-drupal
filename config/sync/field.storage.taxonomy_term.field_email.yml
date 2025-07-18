@@ -1,17 +1,14 @@
-uuid: 61a40dff-8256-4fca-89aa-de16527c992c
+uuid: e4d5ac85-96bd-4816-8166-50f133f5e17e
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-id: taxonomy_term.field_designation
-field_name: field_designation
+id: taxonomy_term.field_email
+field_name: field_email
 entity_type: taxonomy_term
-type: string
-settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+type: email
+settings: {  }
 module: core
 locked: false
 cardinality: 1

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_default_image
     - field.field.node.project.field_durations
+    - field.field.node.project.field_project_team
     - field.field.node.project.field_team
     - node.type.project
   module:
@@ -33,5 +34,6 @@ content:
 hidden:
   field_default_image: true
   field_durations: true
+  field_project_team: true
   field_team: true
   preview_token: true

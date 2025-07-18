@@ -66,11 +66,13 @@ field_config:
         enabled: true
       field_durations:
         enabled: true
+      field_project_team:
+        enabled: true
       field_team:
         enabled: true
   taxonomy_term:
     team:
-      field_designation:
+      field_email:
         enabled: true
       field_employee_image:
         enabled: true

@@ -3,41 +3,30 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.team.field_designation
+    - field.field.taxonomy_term.team.field_email
     - field.field.taxonomy_term.team.field_employee_image
     - taxonomy.vocabulary.team
   module:
     - image
-    - text
 id: taxonomy_term.team.default
 targetEntityType: taxonomy_term
 bundle: team
 mode: default
 content:
-  description:
-    type: text_default
+  field_email:
+    type: email_mailto
     label: hidden
     settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  field_designation:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
     third_party_settings: {  }
     weight: 1
     region: content
   field_employee_image:
-    type: image
-    label: above
+    type: image_url
+    label: hidden
     settings:
-      image_link: ''
       image_style: ''
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
-hidden: {  }
+hidden:
+  description: true

@@ -53,6 +53,7 @@ entity_config:
       enabled: true
       query_load_enabled: true
       edges_enabled: true
+      routes_enabled: true
 field_config:
   node:
     page:
@@ -72,6 +73,10 @@ field_config:
       field_designation:
         enabled: true
       field_employee_image:
+        enabled: true
+  user:
+    user:
+      user_picture:
         enabled: true
 settings:
   exclude_unpublished: true

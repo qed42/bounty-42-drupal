@@ -68,6 +68,8 @@ field_config:
         enabled: true
       field_project_team:
         enabled: true
+      field_reward:
+        enabled: true
       field_team:
         enabled: true
   taxonomy_term:

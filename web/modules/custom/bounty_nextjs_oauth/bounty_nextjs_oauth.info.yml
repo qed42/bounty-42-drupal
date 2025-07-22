@@ -1,0 +1,8 @@
+name: 'Bounty Next.js OAuth Integration'
+type: module
+description: 'Handles OAuth integration with Next.js frontend'
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+  - drupal:user
+  - drupal:system
+  - simple_oauth:simple_oauth

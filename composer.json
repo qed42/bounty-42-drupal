@@ -34,6 +34,7 @@
         "drupal/graphql_compose_fragments": "^1.0@beta",
         "drupal/graphql_compose_preview": "^1.0",
         "drupal/graphql_compose_webform": "^1.2@dev",
+        "drupal/key": "^1.20",
         "drupal/metatag": "^2.0",
         "drupal/pathauto": "^1.12",
         "drupal/redirect": "^1.9",
@@ -118,5 +119,10 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/coder": "^8.3",
+        "slevomat/coding-standard": "^8.19",
+        "squizlabs/php_codesniffer": "^3.13"
     }
 }

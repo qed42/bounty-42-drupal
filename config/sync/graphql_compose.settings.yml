@@ -38,6 +38,11 @@ entity_config:
       edges_enabled: true
       routes_enabled: true
   taxonomy_term:
+    categories:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
     tags:
       enabled: true
       query_load_enabled: true
@@ -61,6 +66,8 @@ field_config:
         enabled: true
     project:
       body:
+        enabled: true
+      field_category:
         enabled: true
       field_default_image:
         enabled: true

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.project.field_project_team
     - field.field.node.project.field_reward
     - field.field.node.project.field_team
+    - field.field.node.project.field_teams
     - image.style.thumbnail
     - node.type.project
   module:
@@ -75,6 +76,16 @@ content:
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_teams:
+    type: entity_reference_autocomplete_tags
+    weight: 6
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   path:

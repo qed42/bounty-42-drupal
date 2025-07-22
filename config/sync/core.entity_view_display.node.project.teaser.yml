@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.project.field_project_team
     - field.field.node.project.field_reward
     - field.field.node.project.field_team
+    - field.field.node.project.field_teams
     - node.type.project
   module:
     - text
@@ -40,4 +41,5 @@ hidden:
   field_project_team: true
   field_reward: true
   field_team: true
+  field_teams: true
   preview_token: true

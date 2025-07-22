@@ -1,0 +1,9 @@
+uuid: 4dd08b77-9406-4757-8037-1530f38167d3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Project teams'
+vid: project_teams
+description: 'Bounty project teams with their name and members.'
+weight: 0
+new_revision: false

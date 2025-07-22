@@ -1,0 +1,30 @@
+uuid: 6989e3b4-dfc7-4a5d-a07d-a86262e71d54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.project_teams.field_team_members
+    - taxonomy.vocabulary.project_teams
+  module:
+    - text
+id: taxonomy_term.project_teams.default
+targetEntityType: taxonomy_term
+bundle: project_teams
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_team_members:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

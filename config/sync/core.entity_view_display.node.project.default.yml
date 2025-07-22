@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.project.field_project_team
     - field.field.node.project.field_reward
     - field.field.node.project.field_team
+    - field.field.node.project.field_teams
     - node.type.project
   module:
     - image
@@ -65,6 +66,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_teams:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
     region: content
   links:
     settings: {  }

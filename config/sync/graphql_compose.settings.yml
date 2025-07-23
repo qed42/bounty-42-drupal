@@ -43,6 +43,11 @@ entity_config:
       query_load_enabled: true
       edges_enabled: true
       routes_enabled: true
+    project_teams:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
     tags:
       enabled: true
       query_load_enabled: true
@@ -79,7 +84,12 @@ field_config:
         enabled: true
       field_team:
         enabled: true
+      field_teams:
+        enabled: true
   taxonomy_term:
+    project_teams:
+      field_team_members:
+        enabled: true
     team:
       field_email:
         enabled: true

@@ -78,11 +78,7 @@ field_config:
         enabled: true
       field_durations:
         enabled: true
-      field_project_team:
-        enabled: true
       field_reward:
-        enabled: true
-      field_team:
         enabled: true
       field_teams:
         enabled: true
@@ -90,11 +86,7 @@ field_config:
     project_teams:
       field_team_members:
         enabled: true
-    team:
-      field_email:
-        enabled: true
-      field_employee_image:
-        enabled: true
+    team: {  }
   user:
     user:
       user_picture:

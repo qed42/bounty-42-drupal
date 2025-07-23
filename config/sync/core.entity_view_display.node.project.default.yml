@@ -7,9 +7,7 @@ dependencies:
     - field.field.node.project.field_category
     - field.field.node.project.field_default_image
     - field.field.node.project.field_durations
-    - field.field.node.project.field_project_team
     - field.field.node.project.field_reward
-    - field.field.node.project.field_team
     - field.field.node.project.field_teams
     - node.type.project
   module:
@@ -52,14 +50,6 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_project_team:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_reward:
     type: basic_string
     label: hidden
@@ -81,5 +71,4 @@ content:
     weight: 0
     region: content
 hidden:
-  field_team: true
   preview_token: true

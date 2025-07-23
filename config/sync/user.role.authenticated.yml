@@ -7,7 +7,6 @@ dependencies:
     - filter.format.webform_default
     - node.type.project
     - taxonomy.vocabulary.project_teams
-    - taxonomy.vocabulary.team
   module:
     - comment
     - contact
@@ -32,10 +31,8 @@ permissions:
   - 'access site-wide contact form'
   - 'create project content'
   - 'create terms in project_teams'
-  - 'create terms in team'
   - 'delete own files'
   - 'edit any project content'
-  - 'edit terms in team'
   - 'execute graphql_compose_server arbitrary graphql requests'
   - 'post comments'
   - 'search content'

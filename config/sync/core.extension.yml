@@ -9,6 +9,7 @@ module:
   big_pipe: 0
   block: 0
   block_content: 0
+  bounty_nextjs_oauth: 0
   breakpoint: 0
   ckeditor5: 0
   coffee: 0
@@ -44,6 +45,7 @@ module:
   history: 0
   image: 0
   jsonapi: 0
+  key: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0

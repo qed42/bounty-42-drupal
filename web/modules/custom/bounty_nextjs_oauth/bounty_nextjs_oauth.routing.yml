@@ -1,0 +1,10 @@
+bounty_nextjs_oauth.sync_user:
+  path: '/api/oauth/sync-user'
+  defaults:
+    _controller: '\Drupal\bounty_nextjs_oauth\Controller\OAuthController::syncUser'
+    _format: 'json'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+  options:
+    _auth: ['cookie']

@@ -6,9 +6,11 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\node\Entity\Node;
 
 /**
- * Nextjs Google Oauth Controller.
+ * Next.js Google OAuth Controller.
  */
 class OAuthController extends ControllerBase {
 
@@ -36,38 +38,44 @@ class OAuthController extends ControllerBase {
         ->getStorage('user')
         ->loadByProperties(['mail' => $email]);
 
-      if (!empty($existing_users)) {
-        // User exists, return their info.
-        $user = reset($existing_users);
+      $user_created = FALSE;
 
-        return new JsonResponse([
-          'status' => 'exists',
-          'uid' => $user->id(),
-          'uuid' => $user->uuid(),
-          'email' => $user->getEmail(),
-          'name' => $user->getDisplayName(),
-        ]);
+      if (!empty($existing_users)) {
+        // User exists.
+        $user = reset($existing_users);
       }
       else {
         // Create new user.
         $user = User::create([
           'name' => $this->generateUsername($email, $name),
           'mail' => $email,
-        // Active.
           'status' => 1,
           'roles' => ['authenticated'],
         ]);
-
         $user->save();
-
-        return new JsonResponse([
-          'status' => 'created',
-          'uid' => $user->id(),
-          'uuid' => $user->uuid(),
-          'email' => $user->getEmail(),
-          'name' => $user->getDisplayName(),
-        ]);
+        $user_created = TRUE;
       }
+
+      // Check if user is in any project team.
+      try {
+        $is_in_project_team = $this->isUserInAnyProjectTeam($user);
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('bounty_nextjs_oauth')->error('Project team check failed: @message', [
+          '@message' => $e->getMessage(),
+        ]);
+        // Fallback to false.
+        $is_in_project_team = FALSE;
+      }
+
+      return new JsonResponse([
+        'status' => $user_created ? 'created' : 'exists',
+        'uid' => $user->id(),
+        'uuid' => $user->uuid(),
+        'email' => $user->getEmail(),
+        'name' => $user->getDisplayName(),
+        'is_in_project_team' => $is_in_project_team,
+      ]);
     }
     catch (\Exception $e) {
       return new JsonResponse(['error' => 'Internal server error'], 500);
@@ -79,36 +87,26 @@ class OAuthController extends ControllerBase {
    */
   private function generateUsername($email, $name) {
     if (!empty($name)) {
-      // Split the full name into parts.
       $name_parts = explode(' ', trim($name));
-
       if (count($name_parts) >= 2) {
-        // Use first and last name.
         $first_name = strtolower($name_parts[0]);
         $last_name = strtolower($name_parts[count($name_parts) - 1]);
       }
       else {
-        // Only one name provided, use email prefix as last name.
         $first_name = strtolower($name_parts[0]);
         $last_name = strtolower(explode('@', $email)[0]);
       }
     }
     else {
-      // No name provided, use email prefix and domain.
       $email_parts = explode('@', $email);
       $first_name = strtolower($email_parts[0]);
-      // Default fallback.
       $last_name = 'user';
     }
 
-    // Clean the names (remove special characters, keep only letters and numbers)
     $first_name = preg_replace('/[^a-zA-Z0-9]/', '', $first_name);
     $last_name = preg_replace('/[^a-zA-Z0-9]/', '', $last_name);
 
-    // Create base username in first_name.last_name format.
     $base_username = $first_name . '.' . $last_name;
-
-    // Ensure uniqueness.
     $username = $base_username;
     $counter = 1;
 
@@ -121,7 +119,7 @@ class OAuthController extends ControllerBase {
   }
 
   /**
-   * Check if a username already exists in the system.
+   * Check if a username already exists.
    */
   private function usernameExists($username) {
     $existing = $this->entityTypeManager()
@@ -129,6 +127,51 @@ class OAuthController extends ControllerBase {
       ->loadByProperties(['name' => $username]);
 
     return !empty($existing);
+  }
+
+  /**
+   * Check if user is part of any project team.
+   */
+  private function isUserInAnyProjectTeam(User $user): bool {
+    $user_id = $user->id();
+
+    // Step 1: Get all taxonomy terms (project teams) where this user is a member.
+    $term_query = $this->entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('vid', 'project_teams')
+      ->condition('field_team_members.target_id', $user_id)
+    // Just in case.
+      ->range(0, 50);
+
+    $term_ids = $term_query->execute();
+
+    \Drupal::logger('oauth_debug')->notice('Found team term IDs for user @uid: @terms', [
+      '@uid' => $user_id,
+      '@terms' => implode(', ', array_keys($term_ids)),
+    ]);
+
+    if (empty($term_ids)) {
+      return FALSE;
+    }
+
+    // Step 2: Get any project nodes that reference these team terms in field_teams.
+    $project_query = $this->entityTypeManager()
+      ->getStorage('node')
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('type', 'project')
+      ->condition('field_teams.target_id', array_keys($term_ids), 'IN')
+      ->range(0, 1);
+
+    $project_ids = $project_query->execute();
+
+    \Drupal::logger('oauth_debug')->notice('Matching project node IDs: @ids', [
+      '@ids' => implode(', ', $project_ids),
+    ]);
+
+    return !empty($project_ids);
   }
 
 }

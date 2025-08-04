@@ -10,6 +10,7 @@ module:
   block: 0
   block_content: 0
   bounty_nextjs_oauth: 0
+  bounty_paragraph: 0
   breakpoint: 0
   ckeditor5: 0
   coffee: 0

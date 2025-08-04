@@ -1,0 +1,47 @@
+<?php
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_entity_create_access().
+ */
+function bounty_paragraph_entity_create_access(AccountInterface $account, array $context, $entity_bundle = NULL)
+{
+    if ($context['entity_type_id'] === 'paragraph' && ($entity_bundle === 'project_milestones' || $entity_bundle === 'milestone')) {
+        if ($account->hasPermission('access content')) {
+            return AccessResult::allowed();
+        }
+    }
+
+    return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_field_access().
+ */
+function bounty_paragraph_entity_field_access(
+  $operation,
+  FieldDefinitionInterface $field_definition,
+  AccountInterface $account,
+  $entity = NULL
+) {
+  // Only continue if the entity is valid (could be null or a FieldItemList).
+  if (!$entity instanceof EntityInterface) {
+    return AccessResult::neutral();
+  }
+
+  if (
+    ($operation === 'view' || $operation === 'edit') &&
+    $field_definition->getName() === 'field_execution_plan' &&
+    $field_definition->getTargetBundle() === 'project_milestones' &&
+    $account->hasPermission('access content')
+  ) {
+    return AccessResult::allowed();
+  }
+
+  return AccessResult::neutral();
+}
+

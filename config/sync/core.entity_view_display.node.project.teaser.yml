@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.project.field_category
     - field.field.node.project.field_default_image
     - field.field.node.project.field_durations
+    - field.field.node.project.field_execution_tracks
     - field.field.node.project.field_reward
     - field.field.node.project.field_teams
     - node.type.project
@@ -36,6 +37,7 @@ hidden:
   field_category: true
   field_default_image: true
   field_durations: true
+  field_execution_tracks: true
   field_reward: true
   field_teams: true
   preview_token: true

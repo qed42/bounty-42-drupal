@@ -1,0 +1,10 @@
+uuid: 26cf761a-3aea-4abd-b38f-ae42c70ae4d9
+langcode: en
+status: true
+dependencies: {  }
+id: milestone
+label: Milestone
+icon_uuid: null
+icon_default: null
+description: 'Paragraph which collects the milestone data of a project.'
+behavior_plugins: {  }

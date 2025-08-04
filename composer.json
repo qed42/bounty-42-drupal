@@ -36,6 +36,7 @@
         "drupal/graphql_compose_webform": "^1.2@dev",
         "drupal/key": "^1.20",
         "drupal/metatag": "^2.0",
+        "drupal/paragraphs": "^1.19",
         "drupal/pathauto": "^1.12",
         "drupal/redirect": "^1.9",
         "drupal/simple_oauth": "^5.2",

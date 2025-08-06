@@ -1,0 +1,42 @@
+uuid: 067259d7-b7fb-4497-9d30-ca0f441229b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.project_milestones.field_execution_plan
+    - field.field.paragraph.project_milestones.field_project_mentor
+    - field.field.paragraph.project_milestones.field_team
+    - paragraphs.paragraphs_type.project_milestones
+  module:
+    - entity_reference_revisions
+id: paragraph.project_milestones.default
+targetEntityType: paragraph
+bundle: project_milestones
+mode: default
+content:
+  field_execution_plan:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_project_mentor:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_team:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

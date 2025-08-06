@@ -1,0 +1,34 @@
+uuid: 901a8346-e6e2-4482-a81f-c2492f063489
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_execution_plan
+    - paragraphs.paragraphs_type.milestone
+    - paragraphs.paragraphs_type.project_milestones
+  module:
+    - entity_reference_revisions
+id: paragraph.project_milestones.field_execution_plan
+field_name: field_execution_plan
+entity_type: paragraph
+bundle: project_milestones
+label: 'Execution plan'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      milestone: milestone
+    negate: 0
+    target_bundles_drag_drop:
+      milestone:
+        weight: 3
+        enabled: true
+      project_milestones:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,7 @@
+name: Bounty Paragraph Access
+type: module
+description: 'Allows direct creation of paragraph entities via JSON:API'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - paragraphs:paragraphs

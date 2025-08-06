@@ -37,6 +37,15 @@ entity_config:
       query_load_enabled: true
       edges_enabled: true
       routes_enabled: true
+  paragraph:
+    milestone:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    project_milestones:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
   taxonomy_term:
     categories:
       enabled: true
@@ -49,11 +58,6 @@ entity_config:
       edges_enabled: true
       routes_enabled: true
     tags:
-      enabled: true
-      query_load_enabled: true
-      edges_enabled: true
-      routes_enabled: true
-    team:
       enabled: true
       query_load_enabled: true
       edges_enabled: true
@@ -78,15 +82,29 @@ field_config:
         enabled: true
       field_durations:
         enabled: true
+      field_execution_tracks:
+        enabled: true
       field_reward:
         enabled: true
       field_teams:
+        enabled: true
+  paragraph:
+    milestone:
+      field_milestone_details:
+        enabled: true
+      field_milestone_name:
+        enabled: true
+    project_milestones:
+      field_execution_plan:
+        enabled: true
+      field_project_mentor:
+        enabled: true
+      field_team:
         enabled: true
   taxonomy_term:
     project_teams:
       field_team_members:
         enabled: true
-    team: {  }
   user:
     user:
       user_picture:

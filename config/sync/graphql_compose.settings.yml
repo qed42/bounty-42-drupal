@@ -99,6 +99,10 @@ field_config:
     project_milestones:
       field_execution_plan:
         enabled: true
+      field_milestone_status:
+        enabled: true
+      field_selected:
+        enabled: true
       field_team:
         enabled: true
   taxonomy_term:

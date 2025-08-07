@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.project_milestones.field_execution_plan
+    - field.field.paragraph.project_milestones.field_milestone_status
     - field.field.paragraph.project_milestones.field_selected
     - field.field.paragraph.project_milestones.field_team
     - paragraphs.paragraphs_type.project_milestones
   module:
     - entity_reference_revisions
+    - options
 id: paragraph.project_milestones.default
 targetEntityType: paragraph
 bundle: project_milestones
@@ -22,6 +24,13 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_milestone_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_selected:
     type: boolean

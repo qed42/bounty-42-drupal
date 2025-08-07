@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.project_milestones.field_execution_plan
-    - field.field.paragraph.project_milestones.field_project_mentor
+    - field.field.paragraph.project_milestones.field_selected
     - field.field.paragraph.project_milestones.field_team
     - paragraphs.paragraphs_type.project_milestones
   module:
@@ -32,15 +32,12 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-  field_project_mentor:
-    type: entity_reference_autocomplete
-    weight: 1
+  field_selected:
+    type: boolean_checkbox
+    weight: 3
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      display_label: true
     third_party_settings: {  }
   field_team:
     type: entity_reference_autocomplete

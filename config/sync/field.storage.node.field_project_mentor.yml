@@ -1,0 +1,20 @@
+uuid: 75227c32-2fa3-4e14-bf33-a5f7fb822cae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: node.field_project_mentor
+field_name: field_project_mentor
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

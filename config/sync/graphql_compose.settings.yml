@@ -84,6 +84,8 @@ field_config:
         enabled: true
       field_execution_tracks:
         enabled: true
+      field_project_mentor:
+        enabled: true
       field_reward:
         enabled: true
       field_teams:
@@ -96,8 +98,6 @@ field_config:
         enabled: true
     project_milestones:
       field_execution_plan:
-        enabled: true
-      field_project_mentor:
         enabled: true
       field_team:
         enabled: true

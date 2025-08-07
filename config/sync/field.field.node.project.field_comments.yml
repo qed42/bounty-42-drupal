@@ -1,0 +1,33 @@
+uuid: 292f48c1-b83c-4684-b8ea-e960457d2129
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_comments
+    - node.type.project
+  module:
+    - comment
+id: node.project.field_comments
+field_name: field_comments
+entity_type: node
+bundle: project
+label: Comments
+description: 'Comments added by management, mentors or project members.'
+required: false
+translatable: false
+default_value:
+  -
+    status: 2
+    cid: 0
+    last_comment_timestamp: 0
+    last_comment_name: null
+    last_comment_uid: 0
+    comment_count: 0
+default_value_callback: ''
+settings:
+  default_mode: 0
+  per_page: 50
+  anonymous: 0
+  form_location: false
+  preview: 1
+field_type: comment

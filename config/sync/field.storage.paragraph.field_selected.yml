@@ -1,16 +1,14 @@
-uuid: 84731d77-be1b-41e2-917d-50a0fe52b9a4
+uuid: 5f61ab17-a301-4020-b0a4-03d2a41f50f3
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-    - user
-id: paragraph.field_project_mentor
-field_name: field_project_mentor
+id: paragraph.field_selected
+field_name: field_selected
 entity_type: paragraph
-type: entity_reference
-settings:
-  target_type: user
+type: boolean
+settings: {  }
 module: core
 locked: false
 cardinality: 1

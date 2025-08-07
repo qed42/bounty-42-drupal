@@ -1,16 +1,16 @@
-uuid: 86c3b31d-ee23-4530-b9a7-110ed9986f40
+uuid: 332fdb3e-05ef-4b3b-a8b4-78cb660b6ffb
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_project_mentor
-    - paragraphs.paragraphs_type.project_milestones
-id: paragraph.project_milestones.field_project_mentor
+    - field.storage.node.field_project_mentor
+    - node.type.project
+id: node.project.field_project_mentor
 field_name: field_project_mentor
-entity_type: paragraph
-bundle: project_milestones
+entity_type: node
+bundle: project
 label: 'Project mentor'
-description: 'Mentor for the project'
+description: 'Assigned mentors of the project.'
 required: false
 translatable: false
 default_value: {  }

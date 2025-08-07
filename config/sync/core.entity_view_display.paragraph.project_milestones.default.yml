@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.project_milestones.field_execution_plan
-    - field.field.paragraph.project_milestones.field_project_mentor
+    - field.field.paragraph.project_milestones.field_milestone_status
+    - field.field.paragraph.project_milestones.field_selected
     - field.field.paragraph.project_milestones.field_team
     - paragraphs.paragraphs_type.project_milestones
   module:
     - entity_reference_revisions
+    - options
 id: paragraph.project_milestones.default
 targetEntityType: paragraph
 bundle: project_milestones
@@ -23,13 +25,22 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_project_mentor:
-    type: entity_reference_label
+  field_milestone_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_selected:
+    type: boolean
     label: above
     settings:
-      link: true
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
   field_team:
     type: entity_reference_label

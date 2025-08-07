@@ -1,0 +1,21 @@
+uuid: b494c629-8a40-49c7-9ee3-903206e91ca6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_selected
+    - paragraphs.paragraphs_type.project_milestones
+id: paragraph.project_milestones.field_selected
+field_name: field_selected
+entity_type: paragraph
+bundle: project_milestones
+label: Selected
+description: 'Boolean value to display whether an entity is selected or not.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

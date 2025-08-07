@@ -1,0 +1,30 @@
+uuid: 90b8362a-fdff-4c39-8dbe-f2c94f6e0041
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_milestone_status
+field_name: field_milestone_status
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: not_started
+      label: 'Not started'
+    -
+      value: in_progress
+      label: 'In progress'
+    -
+      value: completed
+      label: Completed
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

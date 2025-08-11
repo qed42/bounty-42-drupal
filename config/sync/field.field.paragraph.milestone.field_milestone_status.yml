@@ -1,18 +1,18 @@
-uuid: 297d43cb-46b6-4dcd-aeb1-ab0ab7a81f10
+uuid: 0450b9be-40a0-462d-a281-d36a1060b3e8
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_milestone_status
-    - paragraphs.paragraphs_type.project_milestones
+    - paragraphs.paragraphs_type.milestone
   module:
     - options
-id: paragraph.project_milestones.field_milestone_status
+id: paragraph.milestone.field_milestone_status
 field_name: field_milestone_status
 entity_type: paragraph
-bundle: project_milestones
+bundle: milestone
 label: 'Milestone status'
-description: 'Displays the current status of the milestone.'
+description: ''
 required: false
 translatable: false
 default_value:

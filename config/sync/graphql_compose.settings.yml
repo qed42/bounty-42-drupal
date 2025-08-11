@@ -96,10 +96,10 @@ field_config:
         enabled: true
       field_milestone_name:
         enabled: true
+      field_milestone_status:
+        enabled: true
     project_milestones:
       field_execution_plan:
-        enabled: true
-      field_milestone_status:
         enabled: true
       field_selected:
         enabled: true

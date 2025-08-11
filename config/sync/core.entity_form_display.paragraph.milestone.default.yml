@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.milestone.field_milestone_details
     - field.field.paragraph.milestone.field_milestone_name
+    - field.field.paragraph.milestone.field_milestone_status
     - paragraphs.paragraphs_type.milestone
 id: paragraph.milestone.default
 targetEntityType: paragraph
@@ -26,6 +27,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_milestone_status:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

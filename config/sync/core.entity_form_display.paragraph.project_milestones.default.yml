@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.project_milestones.field_execution_plan
-    - field.field.paragraph.project_milestones.field_milestone_status
     - field.field.paragraph.project_milestones.field_selected
     - field.field.paragraph.project_milestones.field_team
     - paragraphs.paragraphs_type.project_milestones
@@ -32,12 +31,6 @@ content:
       features:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings: {  }
-  field_milestone_status:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_selected:
     type: boolean_checkbox

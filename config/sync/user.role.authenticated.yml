@@ -29,6 +29,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'administer comments'
   - 'create project content'
   - 'create terms in project_teams'
   - 'delete own files'

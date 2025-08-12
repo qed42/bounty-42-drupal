@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Bounty mail module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_entity_update().
+ */
+function bounty_mail_entity_update(EntityInterface $entity) {
+  // Only run for the correct bundle and when "field_selected" is 1.
+  if ($entity->bundle() === 'project_milestones' && (int) $entity->get('field_selected')->value === 1) {
+
+    $emails = [];
+    // Get referenced taxonomy terms from field_team.
+    if ($entity->hasField('field_team') && !$entity->get('field_team')->isEmpty()) {
+      $term_ids = array_column($entity->get('field_team')->getValue(), 'target_id');
+
+      foreach ($term_ids as $term_id) {
+        $term = Term::load($term_id);
+        if ($term && $term->hasField('field_team_members') && !$term->get('field_team_members')->isEmpty()) {
+          // Get user IDs from the term.
+          $user_ids = array_column($term->get('field_team_members')->getValue(), 'target_id');
+
+          foreach ($user_ids as $uid) {
+            $user = User::load($uid);
+            if ($user && $user->isActive()) {
+              $email = $user->getEmail();
+              if (!empty($email)) {
+                $emails[] = $email;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Remove duplicate emails.
+    $emails = array_unique($emails);
+    $old_selected = (int) $entity->original->get('field_selected')->value;
+    $new_selected = (int) $entity->get('field_selected')->value;
+
+    if (!empty($emails) && $old_selected !== 1 && $new_selected === 1) {
+      // Current user triggering the update.
+      $account = \Drupal::currentUser();
+      $langcode = $account->getPreferredLangcode();
+
+      // Email service.
+      $mailManager = \Drupal::service('plugin.manager.mail');
+      $module = 'bounty_email';
+      $key = 'project_updated';
+      $send = TRUE;
+
+      // Email parameters.
+      $params['subject'] = 'Project updated: ' . $entity->label();
+      $params['message'] = sprintf(
+            "The article '%s' has been updated by %s.\n\nView it here: %s",
+            $entity->label(),
+            $account->getDisplayName(),
+            Url::fromRoute('entity.node.canonical', ['node' => $entity->id()], ['absolute' => TRUE])->toString()
+        );
+
+      // Send the email to each recipient separately.
+      foreach ($emails as $to) {
+        $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function bounty_mail_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'project_updated':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['message'];
+      $message['headers']['Reply-To'] = 'code@qed42.com';
+      break;
+  }
+}

@@ -38,7 +38,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_comments:
     type: comment_default
@@ -47,7 +47,7 @@ content:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-    weight: 9
+    weight: 8
     region: content
   field_default_image:
     type: image_url
@@ -72,7 +72,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_project_mentor:
     type: entity_reference_label
@@ -80,22 +80,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 8
+    weight: 7
     region: content
   field_reward:
     type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
-    region: content
-  field_teams:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 6
+    weight: 4
     region: content
   links:
     settings: {  }
@@ -103,4 +95,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_teams: true
   preview_token: true

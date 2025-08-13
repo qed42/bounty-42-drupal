@@ -9,8 +9,8 @@ smtp_autotls: true
 smtp_timeout: 30
 smtp_username: AKIA5J65B6COH7H3WV77
 smtp_password: BHpxC1Zsnp/VT4t/goTi+LPo8GH2oknZYjz1AyxnYWxI
-smtp_from: ruturaj.chaubey@qed42.com
-smtp_fromname: Ruturaj
+smtp_from: code@qed42.com
+smtp_fromname: 'Bounty Portal @QED42'
 smtp_client_hostname: ''
 smtp_client_helo: ''
 smtp_allowhtml: true

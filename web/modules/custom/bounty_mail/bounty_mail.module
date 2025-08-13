@@ -2,9 +2,10 @@
 
 /**
  * @file
- * Bounty mail module.
+ * Bounty mail.
  */
 
+use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Term;
@@ -41,6 +42,20 @@ function bounty_mail_entity_update(EntityInterface $entity) {
       }
     }
 
+    $parent = $entity->getParentEntity();
+    $entity_label = trim(explode(">", $entity->label())[0]);
+    $entity_url = "https://bounty-42-next.vercel.app";
+    $message = "Your team has been selected for the bounty project.\nPlease visit the portal to check the recent updates";
+    if ($parent instanceof NodeInterface) {
+      $entity_label = $parent->label();
+      $entity_url .= $parent->toUrl('canonical')->toString();
+      $message = sprintf(
+            "Your team has been selected for the bounty project %s.\nPlease visit the portal to check the recent updates here: %s",
+            $entity_label,
+            $entity_url
+        );
+    }
+
     // Remove duplicate emails.
     $emails = array_unique($emails);
     $old_selected = (int) $entity->original->get('field_selected')->value;
@@ -53,18 +68,13 @@ function bounty_mail_entity_update(EntityInterface $entity) {
 
       // Email service.
       $mailManager = \Drupal::service('plugin.manager.mail');
-      $module = 'bounty_email';
+      $module = 'bounty_mail';
       $key = 'project_updated';
       $send = TRUE;
 
       // Email parameters.
-      $params['subject'] = 'Project updated: ' . $entity->label();
-      $params['message'] = sprintf(
-            "The article '%s' has been updated by %s.\n\nView it here: %s",
-            $entity->label(),
-            $account->getDisplayName(),
-            Url::fromRoute('entity.node.canonical', ['node' => $entity->id()], ['absolute' => TRUE])->toString()
-        );
+      $params['subject'] = 'Congratulations on being selected for the AI bounty project: ' . $entity_label;
+      $params['message'] = $message;
 
       // Send the email to each recipient separately.
       foreach ($emails as $to) {
@@ -84,5 +94,28 @@ function bounty_mail_mail($key, &$message, $params) {
       $message['body'][] = $params['message'];
       $message['headers']['Reply-To'] = 'code@qed42.com';
       break;
+
+    case 'project_approved':
+      $message['subject'] = t('Bounty Project Notification');
+      $message['body'][] = \Drupal::service('renderer')->renderPlain([
+        '#theme' => 'my_module_bounty_email',
+        '#message' => $params['message'],
+        '#portal_link' => $params['portal_link'],
+      ]);
+      break;
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bounty_mail_theme($existing, $type, $theme, $path) {
+  return [
+    'project_approved' => [
+      'variables' => [
+        'message' => NULL,
+        'portal_link' => NULL,
+      ],
+    ],
+  ];
 }

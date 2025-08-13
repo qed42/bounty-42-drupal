@@ -1,0 +1,5 @@
+name: Bounty mail
+type: module
+description: Sends an email when an project selection status is updated.
+core_version_requirement: ^10 || ^11
+package: Custom

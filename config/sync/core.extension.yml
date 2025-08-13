@@ -9,6 +9,7 @@ module:
   big_pipe: 0
   block: 0
   block_content: 0
+  bounty_mail: 0
   bounty_nextjs_oauth: 0
   bounty_paragraph: 0
   breakpoint: 0
@@ -63,6 +64,7 @@ module:
   serialization: 0
   shortcut: 0
   simple_oauth: 0
+  smtp: 0
   standard: 0
   subpathauto: 0
   system: 0

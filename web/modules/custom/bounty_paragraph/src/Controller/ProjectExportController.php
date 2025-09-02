@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
- * Project CSV export controller.
+ * Project CSX export.
  */
 class ProjectExportController extends ControllerBase {
   /**
@@ -99,7 +99,7 @@ class ProjectExportController extends ControllerBase {
         $exported_count = 0;
 
         foreach ($nodes as $node) {
-          $title = $node->label();
+          $title = $this->cleanText($node->label());
           $plans = ['', '', ''];
 
           if ($node->hasField("field_execution_tracks") && !$node->get('field_execution_tracks')->isEmpty()) {
@@ -109,21 +109,7 @@ class ProjectExportController extends ControllerBase {
               if ($index > 2) {
                 break;
               }
-
-              if ($track->hasField('field_execution_plan') && !$track->get('field_execution_plan')->isEmpty()) {
-                $track_plan = $track->get('field_execution_plan')->referencedEntities();
-                $milestones = [];
-
-                foreach ($track_plan as $step => $plan) {
-                  $name = $plan->get('field_milestone_name')->value ?? '';
-                  $details = $plan->get('field_milestone_details')->value ?? '';
-                  if ($name || $details) {
-                    $milestones[] = "Milestone " . ($step + 1) . ": $name - $details";
-                  }
-                }
-                // Join milestones with blank lines between.
-                $plans[$index] = implode("\n\n", $milestones);
-              }
+              $plans[$index] = $this->formatExecutionPlan($track);
             }
           }
 
@@ -155,6 +141,98 @@ class ProjectExportController extends ControllerBase {
       $logger->error('Error during CSV export: ' . $e->getMessage());
       return new Response('Error: ' . $e->getMessage(), 500);
     }
+  }
+
+  /**
+   * Format execution plan data for better structure and readability.
+   *
+   * @param object $track
+   *   The execution track paragraph entity.
+   *
+   * @return string
+   *   Formatted execution plan text.
+   */
+  protected function formatExecutionPlan($track) {
+    if (!$track->hasField('field_execution_plan') || $track->get('field_execution_plan')->isEmpty()) {
+      return '';
+    }
+
+    $track_plan = $track->get('field_execution_plan')->referencedEntities();
+    $milestones = [];
+
+    foreach ($track_plan as $step => $plan) {
+      $milestone = $this->formatMilestone($plan, $step + 1);
+      if (!empty($milestone)) {
+        $milestones[] = $milestone;
+      }
+    }
+
+    return implode("\n", $milestones);
+  }
+
+  /**
+   * Format a single milestone with consistent structure.
+   *
+   * @param object $plan
+   *   The milestone paragraph entity.
+   * @param int $step_number
+   *   The milestone step number.
+   *
+   * @return string
+   *   Formatted milestone text.
+   */
+  protected function formatMilestone($plan, $step_number) {
+    $name = $plan->get('field_milestone_name')->value ?? '';
+    $details = $plan->get('field_milestone_details')->value ?? '';
+
+    // Clean both fields but preserve original content.
+    $name = $this->cleanText($name);
+    $details = $this->cleanText($details);
+
+    if (empty($name) && empty($details)) {
+      return '';
+    }
+
+    // Keep original "Milestone" format.
+    $formatted = "Milestone $step_number: ";
+
+    if (!empty($name) && !empty($details)) {
+      $formatted .= "$name - $details";
+    }
+    elseif (!empty($name)) {
+      $formatted .= $name;
+    }
+    else {
+      $formatted .= $details;
+    }
+
+    return $formatted;
+  }
+
+  /**
+   * Clean text for better CSV formatting but preserve content.
+   *
+   * @param string $text
+   *   Raw text to clean.
+   *
+   * @return string
+   *   Cleaned text.
+   */
+  protected function cleanText($text) {
+    if (empty($text)) {
+      return '';
+    }
+
+    // Strip HTML tags only.
+    $text = strip_tags($text);
+
+    // Normalize excessive whitespace but keep single spaces and line breaks.
+    $text = preg_replace('/[ \t]+/', ' ', $text);
+
+    // Trim excess whitespace from start and end.
+    $text = trim($text);
+
+    return $text;
   }
 
   /**

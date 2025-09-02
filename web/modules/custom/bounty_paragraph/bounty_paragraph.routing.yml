@@ -1,0 +1,17 @@
+bounty_paragraph.projects.export_csv:
+  path: '/admin/projects/export/csv'
+  defaults:
+    _controller: '\Drupal\bounty_paragraph\Controller\ProjectExportController::exportCsv'
+    _title: 'Export Projects CSV'
+  requirements:
+    _permission: 'administer nodes'
+  methods: [GET]
+
+bounty_paragraph.projects.export_status:
+  path: '/admin/projects/export/status'
+  defaults:
+    _controller: '\Drupal\bounty_paragraph\Controller\ProjectExportController::exportStatus'
+    _title: 'Project Export Status'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
